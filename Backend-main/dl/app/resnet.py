@@ -108,17 +108,19 @@ class ResNet:
         return self.classes[preds[0].item()]
 
     def predict_image(self,image):
-        print(image)
+        # print(image)
         image = np.double(
             Image.open(image).convert("RGB").resize((256, 256)) # image resizing,
         )
         image = image/255.0
 
         img = transforms.ToTensor()(image).double()
+        # print("img",img)
         xb = self.to_device(img.unsqueeze(0),"cpu")
         # Get predictions from model
         yb = self.model(xb)
         # Pick index with highest probability
         _, preds  = torch.max(yb, dim=1)
+
 
         return self.classes[preds[0].item()]

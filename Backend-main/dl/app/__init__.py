@@ -24,10 +24,11 @@ def create_app():
     app.register_blueprint(blueprint)
     app.json_encoder = JSONEncoder
     # app.config["MONGO_URI"] = os.getenv("MONGO_URI")
-    app.config["MONGO_URI"] = "mongodb+srv://admin:admin@cluster0.i84zi6s.mongodb.net/?retryWrites=true&w=majority"
+    app.config["MONGO_URI"] = "mongodb+srv://admin:admin@cluster0.i84zi6s.mongodb.net/test?retryWrites=true&w=majority"
     app.config['CORS_RESOURCES'] = {r"*": {"origins": "http://localhost:3000"}}
     from app.db_config import mongo
     CORS(app, supports_credentials=True)
     mongo.init_app(app)
+    # print("mongo",mongo.db.plants.find())
     return app
 

@@ -18,7 +18,7 @@ plant_schema = {
             "type": "string",
         },
         "diseases":[
-            "bsonType":"string"
+            {"bsonType":"string"}
         ]
     },
     # "required": ["email", "password"],

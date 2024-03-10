@@ -108,14 +108,14 @@ const DiseaseDetection = () => {
 
     data.append("image", imageUploaded);
     axiosInstance
-      .post("/dl/detection", data, {
+      .post("http://localhost:5000/api/dl/detection", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((response) => {
-        console.log(response);
-        setSuccessData(response.data);
+        // console.log(response);
+        setSuccessData(JSON.parse(response.data));
         ref.current.complete();
       })
       .catch((error) => {
@@ -123,6 +123,7 @@ const DiseaseDetection = () => {
         ref.current.complete();
       });
   };
+
   return (
     <>
       <LoadingBar color="#22E089" ref={ref} height="3px" />
